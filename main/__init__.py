@@ -2,12 +2,12 @@ import os
 from flask import Flask
 
 from dotenv import load_dotenv
+from flask_restful import Api
 
 # Importar librería flask_restful
-from flask_restful import Api
+
 # Importar SQLAlchemy
 from flask_sqlalchemy import SQLAlchemy
-# Importar Flask JWT
 
 api = Api()
 # Inicializar SQLAlchemy
@@ -17,6 +17,7 @@ db = SQLAlchemy()
 def create_app():
     app = Flask(__name__)
     load_dotenv()
+  
 
     PATH = os.getenv("DATABASE_PATH")
     DB_NAME = os.getenv("DATABASE_NAME")
@@ -32,7 +33,7 @@ def create_app():
 
     # Importar directorio de recursos
     import main.controlers as controlers
-    api.add_resource(controlers.ClienteControlers, '/clientes')
+    api.add_resource(controlers.ClientesControlers, '/clientes')
     api.add_resource(controlers.ClienteControlers, '/cliente/<id>')
     api.add_resource(controlers.EmpresasControlers, '/empresas')
     api.add_resource(controlers.EmpresaControlers, '/empresa/<id>')

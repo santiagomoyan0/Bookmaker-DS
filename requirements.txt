@@ -3,4 +3,4 @@ python-dotenv
 flask-restful
 flask-sqlalchemy
 flask_marshmallow
-
+sqlalchemy-filters
