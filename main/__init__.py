@@ -3,7 +3,7 @@ from flask import Flask
 
 from dotenv import load_dotenv
 from flask_restful import Api
-
+import logging
 # Importar librería flask_restful
 
 # Importar SQLAlchemy
@@ -13,6 +13,7 @@ api = Api()
 # Inicializar SQLAlchemy
 db = SQLAlchemy()
 
+logging.basicConfig(level=logging.INFO, format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
 
 def create_app():
     app = Flask(__name__)
@@ -39,7 +40,7 @@ def create_app():
     api.add_resource(controlers.EmpresaControlers, '/empresa/<id>')
     api.add_resource(controlers.EquiposControlers, '/equipos')
     api.add_resource(controlers.EquipoControlers, '/equipo/<id>')
-
+    api.add_resource(controlers.ApuestasControlers, '/apuestas')
     
     # Cargar la aplicación en la API de Flask Restful
     api.init_app(app)

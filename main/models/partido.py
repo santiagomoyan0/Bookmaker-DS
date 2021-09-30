@@ -2,14 +2,16 @@ from .. import db
 from sqlalchemy.ext.hybrid import hybrid_property
 
 class Partido(db.Model):
+    __tablename__ = "partidos"
     __id = db.Column('id', db.Integer, primary_key = True)
     __fecha = db.Column('fecha', db.DateTime ,nullable = False)
-    __equipo_local = db.Column('equipo_local', db.String)
-    __equipo_visitante = db.Column('equipo_visitante', db.String)
+    __equipo_local = db.Column('equipo_local', db.ForeignKey('equipos.id'), nullable=False)
+    __equipo_visitante = db.Column('equipo_visitante', db.ForeignKey('equipos.id'), nullable=False)
     __finalizado = db.Column('finalizado', db.Boolean)
     __ganador = db.Column('ganador', db.String)
     __goles_local = db.Column('goles_local', db.Integer)
     __goles_visitante = db.Column('goles_visitante', db.Integer)
+    cuota = db.relationship('Cuota', back_populates='partido', uselist=False)
 
     
 

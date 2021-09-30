@@ -16,9 +16,6 @@ eggs/
 .eggs/
 lib/
 lib64/
-lib64
-bin/
-include/
 parts/
 sdist/
 var/
@@ -105,7 +102,6 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-pyvenv.cfg
 .env
 .venv
 env/
@@ -135,6 +131,3 @@ dmypy.json
 .vscode/
 
 workspace.code-workspace
-
-.gitignore
-

@@ -1,11 +1,12 @@
 from main import db
-
+from sqlalchemy.ext.hybrid import hybrid_property
 class Equipo(db.Model):
-
-    __id = db.Column(db.Integer, primary_key=True)
-    __nombre = db.Column(db.String(50), nullable=False)
-    __escudo = db.Column(db.String(50), nullable=False)
-    __pais = db.Column(db.String(120), nullable=False)
+    __tablename__ = "equipos"
+    __id = db.Column('id', db.Integer, primary_key=True)
+    __nombre = db.Column('nombre', db.String(50), nullable=False)
+    __escudo = db.Column('escudo', db.String(50), nullable=False)
+    __pais = db.Column('pais', db.String(120), nullable=False)
+    __puntaje = db.Column('puntaje', db.Float, nullable=False)
 
     def __repr__(self):
         return '<Equipo: %r %r %r >' % (self.__nombre, self.__escudo, self.__pais)
@@ -57,3 +58,16 @@ class Equipo(db.Model):
     @pais.deleter
     def pais(self):
         del self.__pais
+
+    @property
+    def puntaje(self):
+        "Puntaje del Equipo"
+        return self.__puntaje
+
+    @puntaje.setter
+    def puntaje(self, puntaje):
+        self.__puntaje = puntaje
+
+    @puntaje.deleter
+    def puntaje(self):
+        del self.__puntaje

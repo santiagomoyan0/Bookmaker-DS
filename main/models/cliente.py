@@ -3,11 +3,12 @@ from sqlalchemy.ext.hybrid import hybrid_property
 
 
 class Cliente(db.Model):
+    __tablename__ = "clientes"
     __id = db.Column('id', db.Integer, primary_key = True)
     __nombre = db.Column('nombre', db.String(100), nullable = False)
     __apellido = db.Column('apellido', db.String(100), nullable = False)
     __email = db.Column('email', db.String(100), nullable = False)
-
+    __activado = db.Column('activado', db.Boolean, nullable=False)
 
 
     def __repr__(self):
@@ -56,3 +57,15 @@ class Cliente(db.Model):
     @email.setter
     def email(self, email):
         self.__email = email
+    
+    @hybrid_property
+    def activado(self):
+        return self.__activado
+
+    @activado.setter
+    def activado(self, activado):
+        self.__activado = activado
+
+    @activado.deleter
+    def activado(self):
+        self.__activado

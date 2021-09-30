@@ -3,10 +3,10 @@ from flask import request, jsonify
 from .. import db
 from main.models import EmpresaModel
 from main.map import EmpresaSchema
-
+from main.services import EmpresaService
 
 empresa_schema = EmpresaSchema()
-
+empresa_service = EmpresaService()
 
 class Empresa(Resource):
     def get(self, id):

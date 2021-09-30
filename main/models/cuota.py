@@ -2,10 +2,14 @@ from .. import db
 from sqlalchemy.ext.hybrid import hybrid_property
 
 class Cuota(db.Model):
+    __tablename__ = "cuota"
     __id = db.Column('id', db.Integer, primary_key= True )
     __probabilidad_local = db.Column('probalididad_local', db.Float)
     __probabilidad_empate = db.Column('probabilidad_empate', db.Float)
     __probabilidad_visitante = db.Column('probabilidad_visitante', db.Float)
+    __partido_id = db.Column("partidos_id", db.Integer, db.ForeignKey('partidos.id'))
+    partido = db.relationship("Partido", back_populates="cuota")
+
 
     def __repr__(self):
         return f'< Cuota:  {self.__id} {self.__probabilidad_local}, {self.__probabilidad_empate}, {self.__probabilidad__visitante}>'

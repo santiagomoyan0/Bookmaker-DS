@@ -1,11 +1,11 @@
 
 from main import db
-
+from sqlalchemy.ext.hybrid import hybrid_property
 class Empresa(db.Model):
-
+    __tablename__ = "empresas"
     __id = db.Column(db.Integer, primary_key=True)
     __razon_social = db.Column(db.String(50), nullable=False)
-    __mail = db.Column(db.String(120), nullable=False)
+    __email = db.Column(db.String(120), nullable=False)
 
     @property
     def id(self):
